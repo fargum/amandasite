@@ -1,0 +1,791 @@
+/* ==========================================================================
+   Amanda-Leigh Damms — Coaching Website
+   ========================================================================== */
+
+/* --- CSS Custom Properties --- */
+:root {
+  --color-bg: #FAF6F1;
+  --color-text: #3D2C2C;
+  --color-accent: #C4795B;
+  --color-accent-hover: #b06a4e;
+  --color-green: #8A9A7B;
+  --color-sand: #EDE6DC;
+  --color-white: #FFFFFF;
+
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Lato', 'Segoe UI', sans-serif;
+
+  --max-width: 1100px;
+  --text-width: 700px;
+  --header-height: 72px;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* --- Container --- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  max-width: var(--text-width);
+}
+
+strong {
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-sand);
+  height: var(--header-height);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-logo:hover {
+  color: var(--color-accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-accent);
+}
+
+.nav-cta {
+  background-color: var(--color-accent);
+  color: var(--color-white) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+}
+
+.nav-cta:hover {
+  background-color: var(--color-accent-hover) !important;
+  color: var(--color-white) !important;
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  position: absolute;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+.hamburger::before {
+  top: -7px;
+}
+
+.hamburger::after {
+  top: 7px;
+}
+
+/* Hamburger open state */
+.nav-toggle[aria-expanded="true"] .hamburger {
+  background-color: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero {
+  padding: 6rem 0 5rem;
+  text-align: center;
+  background-color: var(--color-sand);
+  position: relative;
+}
+
+/* Organic curve at bottom of hero */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--color-sand);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-style: italic;
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.35;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  line-height: 1.8;
+}
+
+.hero-intro {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  font-weight: 400;
+}
+
+.hero .btn {
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  padding: 0.85rem 2.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-white);
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.section-alt {
+  background-color: var(--color-sand);
+}
+
+/* Organic curves on alternating sections */
+.section-alt::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-sand);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.section-alt::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-sand);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  z-index: 1;
+}
+
+.section h2 {
+  font-size: 2.2rem;
+  color: var(--color-text);
+}
+
+/* Feature list styling */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+  max-width: var(--text-width);
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.feature-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-green);
+}
+
+.section-closing {
+  margin-top: 1.5rem;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.section-closing + .section-closing {
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   Invitation Section
+   ========================================================================== */
+
+.invitation {
+  text-align: center;
+}
+
+.invitation p {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invitation-welcome {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 400;
+  margin: 2rem auto;
+  color: var(--color-accent);
+}
+
+.invitation .btn {
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Contact Form
+   ========================================================================== */
+
+#contact {
+  padding-top: 6rem;
+}
+
+#contact h2 {
+  text-align: center;
+}
+
+#contact > .container > p {
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5rem;
+}
+
+.contact-form {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-sand);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(196, 121, 91, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-error {
+  display: block;
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin-top: 0.3rem;
+  min-height: 1.2em;
+}
+
+.contact-form .btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.contact-fallback {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   About Page
+   ========================================================================== */
+
+.about-hero {
+  padding: 5rem 0 3rem;
+  text-align: center;
+  background-color: var(--color-sand);
+  position: relative;
+}
+
+.about-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-sand);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.about-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.about-content {
+  padding-top: 4rem;
+}
+
+.about-photo-placeholder {
+  width: 220px;
+  height: 280px;
+  margin: 0 auto 3rem;
+  background-color: var(--color-sand);
+  border-radius: 12px;
+  border: 2px dashed var(--color-green);
+}
+
+.about-text {
+  max-width: var(--text-width);
+  margin: 0 auto;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+}
+
+.about-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--color-text);
+  color: var(--color-sand);
+  padding: 4rem 0 2.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-text);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.footer-quote {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  border: none;
+  padding: 0;
+}
+
+.footer-quote p {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.footer-contact {
+  margin-bottom: 1.5rem;
+}
+
+.footer-contact a {
+  color: var(--color-sand);
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--color-accent);
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Responsive — Tablet (600px – 959px)
+   ========================================================================== */
+
+@media (max-width: 959px) {
+  .nav-links {
+    gap: 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  #contact {
+    padding-top: 5rem;
+  }
+}
+
+/* ==========================================================================
+   Responsive — Mobile (under 600px)
+   ========================================================================== */
+
+@media (max-width: 599px) {
+
+  :root {
+    --header-height: 60px;
+  }
+
+  /* Mobile nav */
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-sand);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1rem 0;
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .nav-cta {
+    margin: 0.5rem 1.5rem;
+    text-align: center;
+    border-radius: 4px;
+    width: calc(100% - 3rem);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 4rem 0 3.5rem;
+  }
+
+  .hero::after {
+    height: 50px;
+    bottom: -25px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub,
+  .hero-intro {
+    font-size: 1rem;
+  }
+
+  /* Sections */
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-alt::before,
+  .section-alt::after {
+    height: 40px;
+  }
+
+  .section-alt::before {
+    top: -20px;
+  }
+
+  .section-alt::after {
+    bottom: -20px;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  #contact {
+    padding-top: 4rem;
+  }
+
+  /* Invitation */
+  .invitation-welcome {
+    font-size: 1.5rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 3rem 0 2rem;
+  }
+
+  .site-footer::before {
+    height: 40px;
+    top: -20px;
+  }
+
+  .footer-quote {
+    font-size: 1.2rem;
+  }
+
+  /* About page */
+  .about-hero {
+    padding: 3.5rem 0 2rem;
+  }
+
+  .about-hero::after {
+    height: 40px;
+    bottom: -20px;
+  }
+
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+
+  .about-photo-placeholder {
+    width: 180px;
+    height: 230px;
+  }
+}
+
+/* ==========================================================================
+   Desktop enhancements (960px+)
+   ========================================================================== */
+
+@media (min-width: 960px) {
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .feature-list {
+    columns: 2;
+    column-gap: 3rem;
+  }
+
+  .feature-list li {
+    break-inside: avoid;
+  }
+}

@@ -527,13 +527,12 @@ strong {
   padding-top: 4rem;
 }
 
-.about-photo-placeholder {
-  width: 220px;
-  height: 280px;
+.about-photo {
+  width: 260px;
+  height: auto;
   margin: 0 auto 3rem;
-  background-color: var(--color-sand);
   border-radius: 12px;
-  border: 2px dashed var(--color-green);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .about-text {
